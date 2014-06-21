@@ -1,0 +1,30 @@
+﻿<Window x:Class="SQL_IN.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tc="clr-namespace:SQL_IN"
+        Title="SQL-In" Height="435" Width="440">
+    <Window.Resources>
+        <tc:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </Window.Resources>
+    <Grid>
+        <GroupBox Header="Delimiter Options" Height="67" HorizontalAlignment="Left" Margin="12,12,0,0" Name="groupBox1" VerticalAlignment="Top" Width="394">
+            <Grid>
+                <RadioButton Content="Built in" IsChecked="{Binding UseBuiltInDelimiter}" Height="16" HorizontalAlignment="Left" Margin="6,13,0,0" Name="radioButton2" VerticalAlignment="Top" />
+                <RadioButton Content="Custom" IsChecked="{Binding UseCustomDelimiter}" Height="16" HorizontalAlignment="Left" Margin="171,13,0,0" Name="radioButton1" VerticalAlignment="Top" />
+                <TextBox Text="{Binding CustomDelimiter}" MaxLength="1" Height="23" HorizontalAlignment="Left" Margin="241,10,0,0" Name="textBox1" VerticalAlignment="Top" Width="34" />
+                <ComboBox
+                    ItemsSource="{Binding DelimiterList}"                    
+                    SelectedItem="{Binding SelectedDelimiter}"
+                    Height="23" HorizontalAlignment="Left" Margin="65,10,0,0" Name="comboBox1" VerticalAlignment="Top" Width="100" />
+            </Grid>
+        </GroupBox>
+        <TextBox Text="{Binding Input}" Height="100" HorizontalAlignment="Left" Margin="18,119,0,0" Name="textBox2" VerticalAlignment="Top" Width="388" AcceptsReturn="True" />
+        <TextBox Text="{Binding Output}" IsReadOnly="{Binding CanModifyOutput,Mode=OneWay, Converter={StaticResource ResourceKey=InverseBooleanConverter}}" Height="100" HorizontalAlignment="Left" Margin="18,259,0,0" Name="txtOutput" VerticalAlignment="Top" Width="382" AcceptsReturn="True" MouseDoubleClick="txtOutput_MouseDoubleClick" />
+        <Label Content="Input" Height="28" HorizontalAlignment="Left" Margin="12,85,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Output" Height="28" HorizontalAlignment="Left" Margin="12,225,0,0" Name="label2" VerticalAlignment="Top" />
+        <Button IsDefault="True" Content="SQL-In-Ify!" Height="23" HorizontalAlignment="Left" Margin="286,361,0,0" Name="SQLInIfy" VerticalAlignment="Top" Width="114" Click="SQLInIfy_Click" />
+        <CheckBox IsChecked="{Binding CanModifyOutput}" Content="Editable Output" Height="16" HorizontalAlignment="Left" Margin="298,230,0,0" Name="checkBox1" VerticalAlignment="Top" Width="108" />
+        <CheckBox IsChecked="{Binding UseQuotes}" Content="Use Quotes" Height="16" HorizontalAlignment="Left" Margin="207,230,0,0" Name="checkBox2" VerticalAlignment="Top" />
+        <CheckBox IsChecked="{Binding DeleteDuplicates}" Content="Delete Duplicates" Height="16" HorizontalAlignment="Left" Margin="83,230,0,0" Name="checkBox3" VerticalAlignment="Top" />
+    </Grid>
+</Window>
